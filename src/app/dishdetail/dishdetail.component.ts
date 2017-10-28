@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 const DISH = {
   name: 'Uthappizza',
   image: '/assets/images/uthappizza.png',
@@ -39,13 +40,13 @@ const DISH = {
     }
   ]
 };
+
 @Component({
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.component.html',
   styleUrls: ['./dishdetail.component.scss']
 })
 export class DishdetailComponent implements OnInit {
-  
   dish = DISH;
   constructor() { }
 
