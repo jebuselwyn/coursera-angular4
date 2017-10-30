@@ -35,7 +35,7 @@ import { ContactComponent } from './contact/contact.component';
     FlexLayoutModule,
     AppRoutingModule
 ],
-  providers: [DishService],
+  providers: [DishService, PromotionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
