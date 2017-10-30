@@ -7,6 +7,9 @@ export class DishService {
 
   constructor() { }
 
+  getDish(id): Dish {
+    return DISHES[id];
+  }
   getDishes(): Dish[] {
     return DISHES;
   }
