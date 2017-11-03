@@ -5,12 +5,16 @@
      fxLayoutAlign.gt-md="space-around center"
      fxLayoutGap="10px">
 
+<div fxFlex *ngIf="dish">
 <md-card *ngIf="dish" fxFlex>
+
   <md-card-header>
     <div md-card-avatar></div>
     <md-card-title>
-      <h3>{{dish.name | uppercase}}</h3>
-    </md-card-title>
+    <div fxFlex *ngIf="dish">
+    <h3>{{dish.name | uppercase}}</h3>
+	</div>
+      </md-card-title>
   </md-card-header>
   <img md-card-image src={{dish.image}} alt={{dish.name}}>
   <md-card-content>
@@ -18,6 +22,10 @@
     </p>
   </md-card-content>
 </md-card>
+</div>
+  <div [hidden]="dish">
+    <md-spinner></md-spinner><h4>Loading . . . Please Wait</h4>
+  </div>
 
 <md-card *ngIf="promotion" fxFlex>
   <md-card-header>
