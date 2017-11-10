@@ -6,8 +6,8 @@
      fxLayoutGap="10px"
      fxLayoutGap.xs="0">
 
-  <div *ngIf="dish" fxLayout="column">
-    <div fxFlex *ngIf="dish">
+  <div *ngIf="dish" fxLayout="row"  fxLayoutGap="20px">
+    <div fxFlex="40" *ngIf="dish" >
       <md-card>
         <md-card-header>
           <md-card-title>
@@ -30,6 +30,7 @@
       </md-card>
     </div>
 
+    <div fxLayout="column" >
     <div fxFlex>
 	      <md-list>
 	        <h3>Comments</h3>
@@ -76,6 +77,7 @@
 	          <button type="submit" md-button class="background-primary text-floral-white" [disabled]="commentsForm.invalid">Submit</button>
 	        </form>
     </div>
+  </div>
   </div>
   <div [hidden]="dish || errMess">
     <md-spinner></md-spinner><h4>Loading . . . Please Wait</h4>
