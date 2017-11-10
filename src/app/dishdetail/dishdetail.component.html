@@ -14,7 +14,7 @@
             <h3>{{dish.name | uppercase}}</h3>
           </md-card-title>
         </md-card-header>
-        <img md-card-image src={{dish.image}} alt={{dish.name}}>
+        <img md-card-image src="{{BaseURL+dish.image}}" alt={{dish.name}}>
         <md-card-content>
           <p>{{dish.description}}
           </p>
@@ -49,7 +49,6 @@
 		      <p md-line><span> -- {{comment.author}} </span></p>
 		  </md-list-item>
 	  </md-list>
-
   	</div>
 	<div fxFlex>
 	      <form novalidate [formGroup]="commentsForm" (ngSubmit)="onSubmit()">
@@ -78,8 +77,12 @@
 	        </form>
     </div>
   </div>
-  <div [hidden]="dish">
+  <div [hidden]="dish || errMess">
     <md-spinner></md-spinner><h4>Loading . . . Please Wait</h4>
+  </div>
+  <div *ngIf="errMess">
+    <h2>Error</h2>
+    <h4>{{errMess}}</h4>
   </div>
 
 </div>
