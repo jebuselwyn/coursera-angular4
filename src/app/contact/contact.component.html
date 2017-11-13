@@ -1,4 +1,4 @@
-	<div *ngIf="(visibility == 'shown')">
+	<div *ngIf="!newFeedback" [@expand]>
         <form novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
           <p>
             <md-input-container class="half-width"
@@ -60,7 +60,7 @@
   <div *ngIf="!(visibility == 'shown')">
     <md-spinner></md-spinner><h4>Loading . . . Please Wait</h4>
   </div>
-  	<div *ngIf="newFeedback">
+  	<div *ngIf="newFeedback" [@expand]>
   	  <md-list>
 	      <h3>Your Submission</h3>
 	      <md-list-item>
@@ -74,3 +74,7 @@
 		  </md-list-item>
 	  </md-list>
   	</div>
+    <div *ngIf="feedbackSubmitErrorMessage">
+        <h2>Error</h2>
+        <h4>{{feedbackSubmitErrorMessage}}</h4>
+    </div>

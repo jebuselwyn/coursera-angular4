@@ -18,13 +18,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
   animations: [
     visibility(),
     flyInOut(),
-    trigger('expand', [
-        state('*', style({ opacity: 1, transform: 'translateX(0)' })),
-        transition(':leave', [
-            style({ transform: 'translateY(-50%)', opacity:0 }),
-            animate('5000ms ease-in', style({ opacity: 1, transform: 'translateX(0)' }))
-        ])
-    ])
+    expand()
   ]
 })
 export class ContactComponent implements OnInit {
@@ -34,7 +28,9 @@ export class ContactComponent implements OnInit {
   responseFeedback: Feedback;
   contactType = ContactType;
   newFeedback: Feedback;
-
+  feedbackSubmitLoading = false;
+  feedbackSubmitAndPreviewLoading = false;
+  feedbackSubmitErrorMessage: String;
   visibility = 'shown';
 
   constructor(private feedbackService: FeedbackService, 
@@ -112,16 +108,37 @@ export class ContactComponent implements OnInit {
     this.feedback = this.feedbackForm.value;
     console.log(this.feedback);
     this.newFeedback = this.feedback;
+    this.feedbackSubmitLoading = true;
+    this.feedbackSubmitAndPreviewLoading = true;
     this.feedbackService.submitFeedback(this.feedback);
+    this.feedbackService.submitFeedback(this.feedbackForm.value)
+      .subscribe(
+            content => {
+                this.newFeedback = content;
+                this.feedbackSubmitLoading = false;
+                setTimeout(()=>{
+                    this.resetForm();
+                },5000);
+            },
+            error => {
+                this.feedbackSubmitErrorMessage = error;
+                this.feedbackSubmitLoading = false;
+             });
 
-    this.feedbackForm.reset({
-      firstname: '',
-      lastname: '',
-      telnum: '',
-      email: '',
-      agree: false,
-      contacttype: 'None',
-      message: ''
-    });
   }
+
+    resetForm(){
+        this.feedbackForm.reset({
+            firstname: '',
+            lastname: '',
+            telnum: '',
+            email: '',
+            agree: false,
+            contacttype: 'None',
+            message: ''
+        });
+        this.newFeedback = null;
+        this.feedbackSubmitAndPreviewLoading = false;
+    }
+
 }
