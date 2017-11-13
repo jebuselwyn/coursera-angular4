@@ -16,7 +16,8 @@ import { RestangularModule, Restangular } from 'ngx-restangular';
 @Injectable()
 export class DishService {
 
-  constructor(private restangular: Restangular,
+  constructor(private http: Http,
+  	private restangular: Restangular,
               private processHTTPMsgService: ProcessHttpmsgService) { }
   
   getDishIds(): Observable<number[]> {
@@ -49,10 +50,10 @@ export class DishService {
   getFeaturedDish(): Observable<Dish> {
   	return this.restangular.all('dishes').getList({featured:true}).map(dishes => dishes[0]);
 
-   	// return this.http.get(baseURL + 'dishes?featured=true')
-   	// .map(res => {return this.processHTTPMsgService.extractData(res)})
-    // .catch(error => { return error; } );
-
+/*   	return this.http.get(baseURL + 'dishes?featured=true')
+   	.map(res => {return this.processHTTPMsgService.extractData(res)})
+    .catch(error => { return error; } );
+*/
     // return Observable.of(DISHES.filter((dish) => dish.featured)[0]).delay(2000).toPromise(); 
   }
 }

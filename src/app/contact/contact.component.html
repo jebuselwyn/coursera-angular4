@@ -1,4 +1,4 @@
-        Preview <p>{{lastname}}
+	<div *ngIf="(visibility == 'shown')">
         <form novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
           <p>
             <md-input-container class="half-width"
@@ -55,3 +55,22 @@
           </p>
           <button type="submit" md-button class="background-primary text-floral-white" [disabled]="feedbackForm.invalid">Submit</button>
         </form>
+    </div>
+
+  <div *ngIf="!(visibility == 'shown')">
+    <md-spinner></md-spinner><h4>Loading . . . Please Wait</h4>
+  </div>
+  	<div *ngIf="newFeedback">
+  	  <md-list>
+	      <h3>Your Submission</h3>
+	      <md-list-item>
+		      <p md-line>First Name <span> {{newFeedback.firstname}} </span></p>
+		      <p md-line>Last Name <span> {{newFeedback.lastname}} </span></p>
+		      <p md-line>Tel. Number<span> -- {{newFeedback.telnum}} </span></p>
+		      <p md-line>Email<span> -- {{newFeedback.email}} </span></p>
+		      <p md-line>Contact You?<span> -- {{newFeedback.agree}} </span></p>
+		      <p md-line>How<span> -- {{newFeedback.contacttype}} </span></p>
+		      <p md-line>Feedback<span> -- {{newFeedback.message}} </span></p>
+		  </md-list-item>
+	  </md-list>
+  	</div>

@@ -6,6 +6,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { DishService } from './services/dish.service';
 import { LeaderService } from './services/leader.service';
 import { PromotionService } from './services/promotion.service';
+import { FeedbackService } from './services/feedback.service';
 import { ProcessHttpmsgService } from './services/process-httpmsg.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import 'hammerjs';
@@ -54,7 +55,7 @@ import { HighlightDirective } from './directives/highlight.directive';
     HttpModule,
   RestangularModule.forRoot(RestangularConfigFactory)
 ],
-  providers: [DishService, PromotionService, LeaderService,
+  providers: [DishService, PromotionService, LeaderService,FeedbackService,
     {provide: 'BaseURL', useValue: baseURL}, ProcessHttpmsgService],
   bootstrap: [AppComponent]
 })
